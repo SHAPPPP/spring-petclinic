@@ -89,6 +89,7 @@ pipeline {
                                 serverUrl: "${EKS_API}",
                                 clusterName: "${EKS_CLUSTER_NAME}"]){
                     sh "aws eks --region ${REGION} update-kubeconfig --name ${EKS_CLUSTER_NAME}"
+                    sh "kubectl delete -f service.yaml"
                     sh "kubectl apply -f service.yaml"
                     
                     }
